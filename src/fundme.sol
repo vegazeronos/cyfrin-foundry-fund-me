@@ -2,7 +2,8 @@
 pragma solidity ^0.8.18;
 
 // Note: The AggregatorV3Interface might be at a different location than what was in the video!
-import {AggregatorV3Interface} from "../lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
+import {AggregatorV3Interface} from
+    "../lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import {PriceConverter} from "./priceConverter.sol";
 
 error NotOwner();
@@ -40,10 +41,9 @@ contract FundMe {
         _;
     }
 
-
-    function cheaperWithdraw() public onlyOwner{
+    function cheaperWithdraw() public onlyOwner {
         uint256 funderLengths = s_funders.length;
-        for(uint256 funderIndex = 0; funderIndex < funderLengths; funderIndex++) {
+        for (uint256 funderIndex = 0; funderIndex < funderLengths; funderIndex++) {
             address funder = s_funders[funderIndex];
             s_addressToAmountFunded[funder] = 0;
         }
@@ -90,19 +90,18 @@ contract FundMe {
     }
 
     //view getters
-    function getAddressToAmountFunded(address funder) public view returns (uint256){
+    function getAddressToAmountFunded(address funder) public view returns (uint256) {
         return s_addressToAmountFunded[funder];
     }
 
-    function getFunders(uint256 index) public view returns (address){
-        return s_funders[index];  
+    function getFunders(uint256 index) public view returns (address) {
+        return s_funders[index];
     }
 
-    function getOwner() external view returns(address){
+    function getOwner() external view returns (address) {
         return i_owner;
     }
-
-    }
+}
 
 // Concepts we didn't cover yet (will cover in later sections)
 // 1. Enum
